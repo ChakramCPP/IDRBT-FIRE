@@ -231,6 +231,10 @@ public class FIREWordLabeller {
                 if(lineno==linenos[ind]){
                     flag = false;
                     ind++;
+                    for(int li = 0;li<labels.length;li++){
+                        if(labels[li]!=null && labels[li].equals("L"))
+                            labels[li]="X";
+                    }
                 }
                 lineno++;
                 
