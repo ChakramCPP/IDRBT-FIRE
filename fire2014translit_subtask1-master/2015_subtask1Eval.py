@@ -1,11 +1,8 @@
 #!/usr/bin/python
 
 """
-
 Evaluation Script for Subtask1 in FIRE 2015.
-
 Usage: 2015_subtask1Eval.py [options]
-
 Options:
   -h, --help            show this help message and exit
   -g GTDIR, --gt-dir=GTDIR
@@ -14,9 +11,7 @@ Options:
                         Directory containing the submissions
   -o OUTPUTFILE, --output-file=OUTPUTFILE
                         Output file to write to...
-
 Gokul Chittaranjan, gokulchittaranjan@gmail.com
-
 """
 
 from optparse import OptionParser;
@@ -58,6 +53,24 @@ class AnnotationFileParser(HTMLParser):
 		self.utterances = dict();
 		self.utteranceId = "0";
 
+def processConfusionMatrix(confusionMatrix, uniqToks):
+	precisionByClass = np.zeros([uniqToks, 1]);
+	recallByClass = np.zeros([uniqToks, 1]);
+	fmeasureByClass = np.zeros([uniqToks, 1]);
+
+	tot = confusionMatrix.sum();
+	for ii in xrange(0, uniqToks):
+		tp = confusionMatrix[ii,ii];
+		fp = confusionMatrix[ii,:].sum() - confusionMatrix[ii,ii];
+		fn = confusionMatrix[:,ii].sum() - confusionMatrix[ii,ii];
+		tn = tot - (tp + fp + fn);
+
+		precisionByClass[ii] = tp/(tp + fp + 1e-10);
+		recallByClass[ii] = tp/(tp + fn + 1e-10);
+		fmeasureByClass[ii] = 2*precisionByClass[ii]*recallByClass[ii]/(precisionByClass[ii] + recallByClass[ii] + 1e-10)
+
+	return precisionByClass, recallByClass, fmeasureByClass;
+
 class FIRE2015:
 
 	def __init__(self):
@@ -83,10 +96,16 @@ class FIRE2015:
 					toksInGt[tok] = cnt;
 					toksLookup[cnt] = tok;
 					cnt += 1;
-		toksInGt["Others"] = cnt;
-		toksLookup[cnt] = "Others";
+		toksInGt["O"] = cnt;
+		toksLookup[cnt] = "O";
+		#toksInGt["NE*"] = cnt + 1;
+		#toksLookup[cnt+1] = "NE*";
 
-		self.logger.debug("Tokens in GT %s" %(",".join(toksInGt.keys())))
+		orderedToks = [];
+		for ii in xrange(0, len(toksLookup)):
+			orderedToks.append(toksLookup[ii]);
+
+		self.logger.debug("Tokens in GT %s" %(",".join(orderedToks)))
 
 		uniqToks = len(toksInGt);
 
@@ -98,6 +117,12 @@ class FIRE2015:
 
 		tokens = 0;
 		tokensCorrect = 0;
+
+		correctNEs = 0;
+		NEs = 0;
+
+		correctMIXes = 0;
+		MIXes = 0;
 
 		for k,v in subData.items():
 			utterances += 1;
@@ -120,26 +145,32 @@ class FIRE2015:
 					tokensCorrect += 1;
 				if not subToken in toksInGt:
 					self.logger.debug("Submission utterance %s has token %s that is not in GT" %(k, subToken));
-					subToken = "Others";
-
+					subToken = "O";
 				confusionMatrix[toksInGt[gtToken], toksInGt[subToken]] += 1;
-
+				if gtToken[0:2]=="NE":
+					if subToken[0:2]=="NE":
+						correctNEs += 1;
+					NEs += 1;
+				if gtToken[0:3]=="MIX":
+					if subToken[0:3]=="MIX":
+						correctMIXes += 1;
+					MIXes += 1;
+				if gtToken=="NE":
+					if subToken[0:2]=="NE":
+						subToken="NE";
 		self.logger.debug(confusionMatrix);
 		
-		precisionByClass = np.zeros([uniqToks, 1]);
-		recallByClass = np.zeros([uniqToks, 1]);
-		fmeasureByClass = np.zeros([uniqToks, 1]);
+		precisionByClass, recallByClass, fmeasureByClass = processConfusionMatrix(confusionMatrix, uniqToks);
 
-		tot = confusionMatrix.sum();
-		for ii in xrange(0, uniqToks):
-			tp = confusionMatrix[ii,ii];
-			fp = confusionMatrix[ii,:].sum() - confusionMatrix[ii,ii];
-			fn = confusionMatrix[:,ii].sum() - confusionMatrix[ii,ii];
-			tn = tot - (tp + fp + fn);
 
-			precisionByClass[ii] = tp/(tp + fp + 1e-10);
-			recallByClass[ii] = tp/(tp + fn + 1e-10);
-			fmeasureByClass[ii] = 2*precisionByClass[ii]*recallByClass[ii]/(precisionByClass[ii] + recallByClass[ii] + 1e-10)
+
+		if "X" in toksLookup:
+			rc = toksLookup["X"];
+			confusionMatrix[rc,:] = 0;
+			confusionMatrix[:,rc] = 0;
+		precisionByClass_liberal, recallByClass_liberal, fmeasureByClass_liberal = processConfusionMatrix(confusionMatrix, uniqToks);
+
+
 
 		stats = dict();
 		stats["utterances"] = utterances;
@@ -150,12 +181,25 @@ class FIRE2015:
 		stats["tokensCorrect"] = tokensCorrect;
 		stats["tokensAccuracy"] = tokensCorrect*100/(tokens + 1e-10);
 
+		stats["NEs"] = NEs;
+		stats["NEsCorrect"] = correctNEs;
+		stats["NEsAccuracy"] = correctNEs*100/(NEs + 1e-10);
+
+		stats["MIXes"] = MIXes;
+		stats["MIXesCorrect"] = correctMIXes;
+		stats["MIXesAccuracy"] = correctMIXes*100/(MIXes + 1e-10);
+
 		for ii in xrange(0, uniqToks):
-			stats["precision %s" %(toksLookup[ii])] = precisionByClass[ii][0];
-			stats["recall %s" %(toksLookup[ii])] = recallByClass[ii][0];
-			stats["f-measure %s" %(toksLookup[ii])] = fmeasureByClass[ii][0];
+			stats["strict precision %s" %(toksLookup[ii])] = precisionByClass[ii][0];
+			stats["strict recall %s" %(toksLookup[ii])] = recallByClass[ii][0];
+			stats["strict f-measure %s" %(toksLookup[ii])] = fmeasureByClass[ii][0];
+
+			stats["liberal precision %s" %(toksLookup[ii])] = precisionByClass_liberal[ii][0];
+			stats["liberal recall %s" %(toksLookup[ii])] = recallByClass_liberal[ii][0];
+			stats["liberal f-measure %s" %(toksLookup[ii])] = fmeasureByClass_liberal[ii][0];
 		#print stats;
 		return stats;
+
 
 
 
@@ -163,7 +207,7 @@ class Logging:
 
 	@staticmethod
 	def defaults():
-		logging.basicConfig(level=logging.DEBUG, format='%(name)-12s: %(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%s %p');	
+		logging.basicConfig(level=logging.DEBUG, format='%(name)-12s: %(asctime)s - %(levelname)s - %(message)s', datefmt='%m/%d/%Y %I:%M:%S %p');	
 		return logging.getLogger("FIRE2015.root");
 
 	@staticmethod
@@ -212,24 +256,24 @@ if __name__=="__main__":
 	logger = Logging.defaults();
 
 	parser = OptionParser()
-	parser.add_option("-g", "--gt-dir", dest="gtDir", default="gtTest/", 
-	                  help="Directory contining labelled data")
+	parser.add_option("-g", "--gt-file", dest="gtFile", default="gtTest/annotation1.txt", 
+	                  help="File contining labelled data")
 	parser.add_option("-s", "--sub-dir", dest="subDir", default="subTest/",
-	                  help="Directory containing the submissions")
+	                  help="Directory containing all the runs for the given ground truth file")
 	parser.add_option("-o", "--output-file", dest="outputFile", default="performance.txt",
 	                  help="Output file to write to...")
 
 	(options, args) = parser.parse_args()
 
 	logger.debug("Configuration")
-	logger.debug("GT Dir %s" %(options.gtDir));
+	logger.debug("GT File %s" %(options.gtFile));
 	logger.debug("Sub Dir %s" %(options.subDir));
 
-	if not os.path.exists(options.gtDir):
-		logger.error("GT Dir does not exist");
+	if not os.path.exists(options.gtFile):
+		logger.error("GT file does not exist");
 
 	if not os.path.exists(options.subDir):
-		logger.error("Sub Dir does not exist");
+		logger.error("Submissions dir does not exist");
 
 	subFiles = glob.glob("%s%s*txt" %(options.subDir, os.sep));
 
@@ -237,10 +281,11 @@ if __name__=="__main__":
 
 	for subFile in subFiles:
 		filename = os.path.basename(subFile);
-		gtFile = "%s%s%s" %(options.gtDir, os.sep, filename);
-		if not os.path.exists(gtFile):
-			logger.error("%s does not have a corresponding GT file" %(filename));
-			continue;
+		gtFile = options.gtFile;
+		#gtFile = "%s%s%s" %(options.gtDir, os.sep, filename);
+		#if not os.path.exists(gtFile):
+		#	logger.error("%s does not have a corresponding GT file" %(filename));
+		#	continue;
 		logger.debug("Processing file %s" %(filename));
 		fire2015 = FIRE2015();
 		stats = fire2015.matchFiles(subFile, gtFile);
@@ -249,7 +294,6 @@ if __name__=="__main__":
 	
 	computeAggregates(overallStats);
 
-	logger.debug("\n");
 	ofid = open(options.outputFile,'a');
 	print>>ofid, "%18s\t%s" %("filename", "\t".join([str(n) for n in overallStats["filename"]]));
 	sortedKeys = sorted(overallStats.keys());
