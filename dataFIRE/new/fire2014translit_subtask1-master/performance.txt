@@ -1,0 +1,152 @@
+          filename	output.txt	o2.txt	Aggregate_Mean	Aggregate_Std_dev	Aggregate_Median
+             MIXes	24.0000	24.0000	24.0000	0.0000	24.0000
+     MIXesAccuracy	100.0000	100.0000	100.0000	0.0000	100.0000
+      MIXesCorrect	24.0000	24.0000	24.0000	0.0000	24.0000
+               NEs	554.0000	554.0000	554.0000	0.0000	554.0000
+       NEsAccuracy	87.9061	87.9061	87.9061	0.0000	87.9061
+        NEsCorrect	487.0000	487.0000	487.0000	0.0000	487.0000
+liberal f-measure MIX	0.8000	0.8000	0.8000	0.0000	0.8000
+liberal f-measure MIX_en-bn	0.6667	0.6667	0.6667	0.0000	0.6667
+liberal f-measure MIX_en-kn	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal f-measure MIX_en-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal f-measure MIX_en-te	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal f-measure NE	0.6129	0.6129	0.6129	0.0000	0.6129
+liberal f-measure NE-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal f-measure NE_L	0.3953	0.3953	0.3953	0.0000	0.3953
+liberal f-measure NE_O	0.8571	0.8571	0.8571	0.0000	0.8571
+liberal f-measure NE_OA	0.1481	0.1481	0.1481	0.0000	0.1481
+liberal f-measure NE_P	0.8139	0.8139	0.8139	0.0000	0.8139
+liberal f-measure NE_PA	0.0000	0.0000	0.0000	0.0000	0.0000
+liberal f-measure O	0.0000	0.0000	0.0000	0.0000	0.0000
+liberal f-measure X	0.9551	0.9551	0.9551	0.0000	0.9551
+liberal f-measure bn	0.5679	0.5716	0.5697	0.0018	0.5697
+liberal f-measure en	0.7762	0.7782	0.7772	0.0010	0.7772
+liberal f-measure gu	0.0000	0.0000	0.0000	0.0000	0.0000
+liberal f-measure hi	0.4009	0.4838	0.4423	0.0414	0.4423
+liberal f-measure kn	0.4402	0.3688	0.4045	0.0357	0.4045
+liberal f-measure ml	0.4438	0.2077	0.3257	0.1180	0.3257
+liberal f-measure mr	0.3519	0.3741	0.3630	0.0111	0.3630
+liberal f-measure ta	0.7280	0.6279	0.6779	0.0500	0.6779
+liberal f-measure te	0.3468	0.4015	0.3742	0.0274	0.3742
+liberal precision MIX	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal precision MIX_en-bn	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal precision MIX_en-kn	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal precision MIX_en-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal precision MIX_en-te	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal precision NE	0.6823	0.6823	0.6823	0.0000	0.6823
+liberal precision NE-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal precision NE_L	0.9444	0.9444	0.9444	0.0000	0.9444
+liberal precision NE_O	0.7500	0.7500	0.7500	0.0000	0.7500
+liberal precision NE_OA	0.2500	0.2500	0.2500	0.0000	0.2500
+liberal precision NE_P	0.9699	0.9699	0.9699	0.0000	0.9699
+liberal precision NE_PA	0.0000	0.0000	0.0000	0.0000	0.0000
+liberal precision O	0.0000	0.0000	0.0000	0.0000	0.0000
+liberal precision X	0.9482	0.9482	0.9482	0.0000	0.9482
+liberal precision bn	0.4817	0.4627	0.4722	0.0095	0.4722
+liberal precision en	0.9200	0.9190	0.9195	0.0005	0.9195
+liberal precision gu	0.0000	0.0000	0.0000	0.0000	0.0000
+liberal precision hi	0.3459	0.4532	0.3996	0.0537	0.3996
+liberal precision kn	0.3813	0.2692	0.3253	0.0560	0.3253
+liberal precision ml	0.3160	0.1169	0.2165	0.0996	0.2165
+liberal precision mr	0.2577	0.2423	0.2500	0.0077	0.2500
+liberal precision ta	0.6924	0.5967	0.6446	0.0479	0.6446
+liberal precision te	0.2439	0.3970	0.3204	0.0766	0.3204
+liberal recall MIX	0.6667	0.6667	0.6667	0.0000	0.6667
+liberal recall MIX_en-bn	0.5000	0.5000	0.5000	0.0000	0.5000
+liberal recall MIX_en-kn	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal recall MIX_en-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal recall MIX_en-te	1.0000	1.0000	1.0000	0.0000	1.0000
+ liberal recall NE	0.5563	0.5563	0.5563	0.0000	0.5563
+liberal recall NE-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal recall NE_L	0.2500	0.2500	0.2500	0.0000	0.2500
+liberal recall NE_O	1.0000	1.0000	1.0000	0.0000	1.0000
+liberal recall NE_OA	0.1053	0.1053	0.1053	0.0000	0.1053
+liberal recall NE_P	0.7011	0.7011	0.7011	0.0000	0.7011
+liberal recall NE_PA	0.0000	0.0000	0.0000	0.0000	0.0000
+  liberal recall O	0.0000	0.0000	0.0000	0.0000	0.0000
+  liberal recall X	0.9621	0.9621	0.9621	0.0000	0.9621
+ liberal recall bn	0.6915	0.7473	0.7194	0.0279	0.7194
+ liberal recall en	0.6712	0.6748	0.6730	0.0018	0.6730
+ liberal recall gu	0.0000	0.0000	0.0000	0.0000	0.0000
+ liberal recall hi	0.4766	0.5187	0.4977	0.0210	0.4977
+ liberal recall kn	0.5205	0.5855	0.5530	0.0325	0.5530
+ liberal recall ml	0.7449	0.9310	0.8380	0.0931	0.8380
+ liberal recall mr	0.5545	0.8209	0.6877	0.1332	0.6877
+ liberal recall ta	0.7673	0.6626	0.7150	0.0524	0.7150
+ liberal recall te	0.6000	0.4062	0.5031	0.0969	0.5031
+strict f-measure MIX	0.8000	0.8000	0.8000	0.0000	0.8000
+strict f-measure MIX_en-bn	0.6667	0.6667	0.6667	0.0000	0.6667
+strict f-measure MIX_en-kn	1.0000	1.0000	1.0000	0.0000	1.0000
+strict f-measure MIX_en-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+strict f-measure MIX_en-te	1.0000	1.0000	1.0000	0.0000	1.0000
+strict f-measure NE	0.6129	0.6129	0.6129	0.0000	0.6129
+strict f-measure NE-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+strict f-measure NE_L	0.3953	0.3953	0.3953	0.0000	0.3953
+strict f-measure NE_O	0.8571	0.8571	0.8571	0.0000	0.8571
+strict f-measure NE_OA	0.1481	0.1481	0.1481	0.0000	0.1481
+strict f-measure NE_P	0.8139	0.8139	0.8139	0.0000	0.8139
+strict f-measure NE_PA	0.0000	0.0000	0.0000	0.0000	0.0000
+strict f-measure O	0.0000	0.0000	0.0000	0.0000	0.0000
+strict f-measure X	0.9551	0.9551	0.9551	0.0000	0.9551
+strict f-measure bn	0.5679	0.5716	0.5697	0.0018	0.5697
+strict f-measure en	0.7762	0.7782	0.7772	0.0010	0.7772
+strict f-measure gu	0.0000	0.0000	0.0000	0.0000	0.0000
+strict f-measure hi	0.4009	0.4838	0.4423	0.0414	0.4423
+strict f-measure kn	0.4402	0.3688	0.4045	0.0357	0.4045
+strict f-measure ml	0.4438	0.2077	0.3257	0.1180	0.3257
+strict f-measure mr	0.3519	0.3741	0.3630	0.0111	0.3630
+strict f-measure ta	0.7280	0.6279	0.6779	0.0500	0.6779
+strict f-measure te	0.3468	0.4015	0.3742	0.0274	0.3742
+strict precision MIX	1.0000	1.0000	1.0000	0.0000	1.0000
+strict precision MIX_en-bn	1.0000	1.0000	1.0000	0.0000	1.0000
+strict precision MIX_en-kn	1.0000	1.0000	1.0000	0.0000	1.0000
+strict precision MIX_en-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+strict precision MIX_en-te	1.0000	1.0000	1.0000	0.0000	1.0000
+strict precision NE	0.6823	0.6823	0.6823	0.0000	0.6823
+strict precision NE-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+strict precision NE_L	0.9444	0.9444	0.9444	0.0000	0.9444
+strict precision NE_O	0.7500	0.7500	0.7500	0.0000	0.7500
+strict precision NE_OA	0.2500	0.2500	0.2500	0.0000	0.2500
+strict precision NE_P	0.9699	0.9699	0.9699	0.0000	0.9699
+strict precision NE_PA	0.0000	0.0000	0.0000	0.0000	0.0000
+strict precision O	0.0000	0.0000	0.0000	0.0000	0.0000
+strict precision X	0.9482	0.9482	0.9482	0.0000	0.9482
+strict precision bn	0.4817	0.4627	0.4722	0.0095	0.4722
+strict precision en	0.9200	0.9190	0.9195	0.0005	0.9195
+strict precision gu	0.0000	0.0000	0.0000	0.0000	0.0000
+strict precision hi	0.3459	0.4532	0.3996	0.0537	0.3996
+strict precision kn	0.3813	0.2692	0.3253	0.0560	0.3253
+strict precision ml	0.3160	0.1169	0.2165	0.0996	0.2165
+strict precision mr	0.2577	0.2423	0.2500	0.0077	0.2500
+strict precision ta	0.6924	0.5967	0.6446	0.0479	0.6446
+strict precision te	0.2439	0.3970	0.3204	0.0766	0.3204
+ strict recall MIX	0.6667	0.6667	0.6667	0.0000	0.6667
+strict recall MIX_en-bn	0.5000	0.5000	0.5000	0.0000	0.5000
+strict recall MIX_en-kn	1.0000	1.0000	1.0000	0.0000	1.0000
+strict recall MIX_en-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+strict recall MIX_en-te	1.0000	1.0000	1.0000	0.0000	1.0000
+  strict recall NE	0.5563	0.5563	0.5563	0.0000	0.5563
+strict recall NE-ml	1.0000	1.0000	1.0000	0.0000	1.0000
+strict recall NE_L	0.2500	0.2500	0.2500	0.0000	0.2500
+strict recall NE_O	1.0000	1.0000	1.0000	0.0000	1.0000
+strict recall NE_OA	0.1053	0.1053	0.1053	0.0000	0.1053
+strict recall NE_P	0.7011	0.7011	0.7011	0.0000	0.7011
+strict recall NE_PA	0.0000	0.0000	0.0000	0.0000	0.0000
+   strict recall O	0.0000	0.0000	0.0000	0.0000	0.0000
+   strict recall X	0.9621	0.9621	0.9621	0.0000	0.9621
+  strict recall bn	0.6915	0.7473	0.7194	0.0279	0.7194
+  strict recall en	0.6712	0.6748	0.6730	0.0018	0.6730
+  strict recall gu	0.0000	0.0000	0.0000	0.0000	0.0000
+  strict recall hi	0.4766	0.5187	0.4977	0.0210	0.4977
+  strict recall kn	0.5205	0.5855	0.5530	0.0325	0.5530
+  strict recall ml	0.7449	0.9310	0.8380	0.0931	0.8380
+  strict recall mr	0.5545	0.8209	0.6877	0.1332	0.6877
+  strict recall ta	0.7673	0.6626	0.7150	0.0524	0.7150
+  strict recall te	0.6000	0.4062	0.5031	0.0969	0.5031
+            tokens	11999.0000	11999.0000	11999.0000	0.0000	11999.0000
+    tokensAccuracy	67.2723	67.6890	67.4806	0.2084	67.4806
+     tokensCorrect	8072.0000	8122.0000	8097.0000	25.0000	8097.0000
+        utterances	792.0000	792.0000	792.0000	0.0000	792.0000
+utterancesAccuracy	17.0455	18.1818	17.6136	0.5682	17.6136
+ utterancesCorrect	135.0000	144.0000	139.5000	4.5000	139.5000
+ utterancesProblem	0.0000	0.0000	0.0000	0.0000	0.0000
